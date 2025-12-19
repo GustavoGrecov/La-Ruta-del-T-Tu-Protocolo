@@ -1,0 +1,214 @@
+Actúa como un desarrollador senior especializado en funnels emocionales, quizzes de alta conversión y páginas diseñadas para vender productos digitales (e-books) a tráfico frío.
+
+Crea un sitio web completo, funcional y responsive (mobile-first) para un QUIZ INTERACTIVO DE TÉS, totalmente alineado con un video UGC previo.
+
+IDIOMA:
+Todo el sitio debe estar 100% en ESPAÑOL, con tono íntimo, femenino, cercano, tipo “amiga que dice la verdad”.
+
+CONTEXTO DEL USUARIO:
+La persona viene de un video donde alguien dice que:
+- Descubrió 3 tés
+- No rompen el ayuno
+- Activan el metabolismo
+- Funcionaron porque hizo un TEST
+- Cada cuerpo es distinto
+
+El sitio debe sentirse como la CONTINUACIÓN DIRECTA del video.
+
+────────────────────────
+1️⃣ HERO SECTION
+────────────────────────
+
+Título:
+“Ahora dime… ¿tu cuerpo también te está dando estas señales?”
+
+Subtítulo:
+“Este test identifica qué tés funcionan mejor para TU cuerpo y en qué momento del día.”
+
+Microtexto:
+“⏱ Menos de 1 minuto”
+
+CTA:
+“Empezar el test”
+
+────────────────────────
+2️⃣ QUIZ INTERACTIVO (12 PREGUNTAS QUE DUELEN)
+────────────────────────
+
+Mostrar UNA pregunta por pantalla  
+Barra de progreso visible  
+Lenguaje emocional, honesto, incómodo (sin ser médico)
+
+PREGUNTA 1:
+“¿Qué es lo primero que haces al despertar?”
+
+- Me toco la barriga para ver si desinflamó
+- Me miro al espejo buscando cambios
+- Me pongo ropa ancha para disimular
+- Evito mirarme
+
+PREGUNTA 2:
+“¿Qué parte de tu cuerpo te genera más incomodidad?”
+
+- Abdomen hinchado
+- Cintura marcada por la ropa
+- Cara inflamada
+- Todo el cuerpo pesado
+
+PREGUNTA 3:
+“¿Cuándo te sientes peor con tu cuerpo?”
+
+- Al despertar
+- Después de comer
+- Por la tarde
+- Todo el día
+
+PREGUNTA 4:
+“¿Qué sientes cuando comes algo ‘fuera de la dieta’?”
+
+- Culpa inmediata
+- Ansiedad
+- Pensamiento de ‘ya arruiné todo’
+- Frustración silenciosa
+
+PREGUNTA 5:
+“¿Qué has probado antes sin resultados reales?”
+
+- Dietas estrictas
+- Ayuno intermitente
+- Tés genéricos
+- Pastillas o suplementos
+- Todo un poco
+
+PREGUNTA 6:
+“¿Cómo te sientes cuando ves cuerpos ‘perfectos’ en redes?”
+
+- Me comparo y me siento peor
+- Me motivo… pero dura poco
+- Me genera ansiedad
+- Finjo que no me importa
+
+PREGUNTA 7:
+“¿Qué haces para ‘esconder’ tu cuerpo?”
+
+- Uso ropa más grande
+- Evito fotos
+- Me cubro con bolsas o mochilas
+- Evito ciertos planes
+
+PREGUNTA 8:
+“¿Qué pasa con tu energía durante el día?”
+
+- Me levanto cansada
+- Después de comer me apago
+- Por la tarde no rindo
+- Estoy cansada todo el tiempo
+
+PREGUNTA 9:
+“¿Qué pensamiento se repite más en tu cabeza?”
+
+- ‘Nada me funciona’
+- ‘Empiezo el lunes’
+- ‘Mi cuerpo está arruinado’
+- ‘Algo hago mal’
+
+PREGUNTA 10:
+“¿Qué te frustra más?”
+
+- No bajar aunque me cuide
+- Sentirme hinchada siempre
+- No mantener la constancia
+- No entender mi cuerpo
+
+PREGUNTA 11:
+“Si mañana despertaras diferente, ¿qué notarías primero?”
+
+- Menos hinchazón
+- Más ligereza
+- Más energía
+- Más confianza
+
+PREGUNTA 12:
+“¿Qué estás buscando de verdad?”
+
+- Una solución simple
+- Algo que se adapte a mí
+- Sentirme bien sin sufrir
+- Volver a confiar en mi cuerpo
+
+────────────────────────
+3️⃣ RESULTADO PERSONALIZADO
+────────────────────────
+
+Título:
+“Esta es tu rutina ideal de tés, según TU cuerpo”
+
+Texto empático:
+“No te falta fuerza de voluntad. Solo estabas usando lo incorrecto en el momento equivocado.”
+
+☀️ MAÑANA:
+Té (ejemplo: Jengibre con clavo)
+Texto:
+“Para activar tu cuerpo, reducir la inflamación matinal y empezar el día más ligera.”
+
+🍽 ALMUERZO:
+Té (ejemplo: Canela con carqueja)
+Texto:
+“Para ayudar a la digestión y evitar esa hinchazón incómoda después de comer.”
+
+🌤 TARDE:
+Té (ejemplo: Hibisco con menta o manzanilla)
+Texto:
+“Para sentir ligereza, bienestar y evitar el cansancio de la tarde.”
+
+────────────────────────
+4️⃣ TRANSICIÓN PARA LA VENTA DEL E-BOOK
+────────────────────────
+
+Sección final emocional (ANTES del botón):
+
+Texto:
+“Este test solo te mostró QUÉ tés usar.
+Pero el resultado real viene de:
+- El orden correcto
+- Las cantidades exactas
+- Cuántos días seguir cada uno
+- Qué evitar mientras los tomas”
+
+Texto secundario:
+“Eso es lo que la mayoría hace mal… y por eso dice que ‘los tés no funcionan’.”
+
+────────────────────────
+5️⃣ CTA DE COMPRA (E-BOOK)
+────────────────────────
+
+Título:
+“La guía completa para seguir esta rutina paso a paso”
+
+Bullet points:
+- Rutina diaria detallada
+- Cantidades exactas
+- Combinaciones seguras
+- Errores que bloquean resultados
+- Adaptado a cuerpos reales
+
+Botón CTA:
+“Quiero la guía completa”
+
+Microtexto:
+“Creado para mujeres que ya lo intentaron todo.”
+
+────────────────────────
+6️⃣ ESTILO Y TÉCNICA
+────────────────────────
+
+- Estilo UGC, humano, nada corporativo
+- Diseño limpio, calmante, femenino
+- Colores suaves (verde, beige, blanco)
+- Animaciones suaves
+- Código simple (HTML, CSS, JS)
+- Fácil de editar preguntas y textos
+- Sin promesas médicas
+
+ENTREGA:
+Genera TODO el código necesario para que el sitio funcione perfectamente.

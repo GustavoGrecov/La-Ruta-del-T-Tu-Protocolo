@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/Button";
 import { useQuizStore } from "@/lib/store";
 import { ArrowRight, Clock } from "lucide-react";
+import heroImg from "@assets/stock_images/woman_holding_a_warm_61ba8a80.jpg";
 
 export default function Landing() {
   const [, setLocation] = useLocation();
@@ -24,7 +25,12 @@ export default function Landing() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
+          className="flex flex-col items-center"
         >
+          <div className="w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-white shadow-xl shadow-primary/10">
+             <img src={heroImg} alt="Woman with tea" className="w-full h-full object-cover" />
+          </div>
+
           <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium tracking-wide mb-8">
             Test de Diagnóstico Corporal
           </span>

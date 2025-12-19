@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/Button";
 import { Check, Star, Sun, Moon, Coffee } from "lucide-react";
+import gingerTeaImg from "@assets/stock_images/close_up_of_herbal_t_c7b3d9c6.jpg";
+import herbalTeaImg from "@assets/stock_images/variety_of_dried_her_928685a7.jpg";
 
 export default function Results() {
   const container = {
@@ -55,14 +57,16 @@ export default function Results() {
         >
           {/* Morning Card */}
           <motion.div variants={item} className="bg-white rounded-2xl border border-stone-100 shadow-lg shadow-stone-200/50 overflow-hidden relative group hover:-translate-y-1 transition-transform duration-300">
-            <div className="absolute top-0 left-0 w-1.5 h-full bg-amber-400" />
+            <div className="absolute top-0 left-0 w-1.5 h-full bg-amber-400 z-10" />
+            <div className="h-32 w-full overflow-hidden relative">
+               <img src={gingerTeaImg} alt="Ginger Tea" className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-500" />
+               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+               <div className="absolute bottom-3 left-4 text-white flex items-center gap-2">
+                 <Sun className="w-4 h-4 text-amber-300" />
+                 <span className="text-xs font-bold uppercase tracking-wider">Mañana • Al despertar</span>
+               </div>
+            </div>
             <div className="p-6 pl-8">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="p-2 bg-amber-50 rounded-lg text-amber-600">
-                  <Sun className="w-5 h-5" />
-                </div>
-                <span className="text-xs font-bold uppercase tracking-wider text-amber-600">Mañana • Al despertar</span>
-              </div>
               <h3 className="text-xl font-serif font-semibold text-stone-900 mb-2">
                 Té de Jengibre con clavo
               </h3>
@@ -74,7 +78,7 @@ export default function Results() {
 
           {/* Lunch Card */}
           <motion.div variants={item} className="bg-white rounded-2xl border border-stone-100 shadow-lg shadow-stone-200/50 overflow-hidden relative group hover:-translate-y-1 transition-transform duration-300">
-            <div className="absolute top-0 left-0 w-1.5 h-full bg-primary" />
+            <div className="absolute top-0 left-0 w-1.5 h-full bg-primary z-10" />
             <div className="p-6 pl-8">
               <div className="flex items-center gap-3 mb-3">
                 <div className="p-2 bg-primary/10 rounded-lg text-primary">
@@ -93,14 +97,16 @@ export default function Results() {
 
           {/* Evening Card */}
           <motion.div variants={item} className="bg-white rounded-2xl border border-stone-100 shadow-lg shadow-stone-200/50 overflow-hidden relative group hover:-translate-y-1 transition-transform duration-300">
-            <div className="absolute top-0 left-0 w-1.5 h-full bg-indigo-400" />
+            <div className="absolute top-0 left-0 w-1.5 h-full bg-indigo-400 z-10" />
+            <div className="h-32 w-full overflow-hidden relative">
+               <img src={herbalTeaImg} alt="Herbal Tea" className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-500" />
+               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+               <div className="absolute bottom-3 left-4 text-white flex items-center gap-2">
+                 <Moon className="w-4 h-4 text-indigo-300" />
+                 <span className="text-xs font-bold uppercase tracking-wider">Tarde/Noche • Relax</span>
+               </div>
+            </div>
             <div className="p-6 pl-8">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="p-2 bg-indigo-50 rounded-lg text-indigo-600">
-                  <Moon className="w-5 h-5" />
-                </div>
-                <span className="text-xs font-bold uppercase tracking-wider text-indigo-600">Tarde/Noche • Relax</span>
-              </div>
               <h3 className="text-xl font-serif font-semibold text-stone-900 mb-2">
                 Té de Hibisco con menta
               </h3>

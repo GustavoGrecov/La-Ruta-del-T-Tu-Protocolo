@@ -146,22 +146,22 @@ export default function Quiz() {
 
   const handleOptionSelect = async (option: string) => {
     setAnswer(currentStep, option);
-    
+
     if (currentStep < QUESTIONS.length - 1) {
       setDirection(1);
       setTimeout(() => nextStep(), 250); // slight delay for visual feedback
     } else {
       // Quiz completed
       setIsProcessing(true);
-      
-      // Submit results silently
-      try {
-        await submitQuiz.mutateAsync({ ...answers, [currentStep]: option });
-      } catch (e) {
-        // ignore errors, we want to show results anyway
-        console.error("Submission failed but proceeding", e);
-      }
-      
+
+      // Submit results silently (Fake for single file version)
+      // try {
+      //   await submitQuiz.mutateAsync({ ...answers, [currentStep]: option });
+      // } catch (e) {
+      //   console.error("Submission failed but proceeding", e);
+      // }
+      console.log("Quiz completed locally");
+
       // Fake processing delay
       setTimeout(() => {
         setLocation("/results");
@@ -196,9 +196,9 @@ export default function Quiz() {
         >
           <div className="w-16 h-16 rounded-full bg-primary/20" />
         </motion.div>
-        
+
         <h2 className="text-2xl font-serif text-foreground mb-2">Analizando tu tipo de cuerpo...</h2>
-        <motion.p 
+        <motion.p
           className="text-muted-foreground"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -206,7 +206,7 @@ export default function Quiz() {
         >
           Identificando la combinación de tés...
         </motion.p>
-        <motion.p 
+        <motion.p
           className="text-muted-foreground mt-2"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -225,7 +225,7 @@ export default function Quiz() {
     <div className="min-h-screen bg-background flex flex-col max-w-lg mx-auto shadow-2xl shadow-stone-200/50">
       {/* Header */}
       <div className="p-6 pb-2 pt-8 flex items-center justify-between">
-        <button 
+        <button
           onClick={handleBack}
           className="p-2 -ml-2 text-muted-foreground hover:text-foreground transition-colors"
         >
@@ -240,7 +240,7 @@ export default function Quiz() {
       {/* Progress Bar */}
       <div className="px-6 mb-8">
         <div className="h-1.5 w-full bg-secondary rounded-full overflow-hidden">
-          <motion.div 
+          <motion.div
             className="h-full bg-primary"
             initial={{ width: 0 }}
             animate={{ width: `${progress}%` }}
@@ -273,16 +273,16 @@ export default function Quiz() {
                   className={`
                     w-full p-4 md:p-5 text-left rounded-2xl border-2 transition-all duration-200
                     flex items-center group
-                    ${answers[currentStep] === option 
-                      ? "border-primary bg-primary/5 text-primary-foreground" 
+                    ${answers[currentStep] === option
+                      ? "border-primary bg-primary/5 text-primary-foreground"
                       : "border-transparent bg-white shadow-sm hover:border-primary/30 hover:shadow-md text-stone-600"}
                   `}
                 >
                   <span className={`
                     w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium mr-4 border
                     transition-colors duration-200
-                    ${answers[currentStep] === option 
-                      ? "bg-primary text-white border-primary" 
+                    ${answers[currentStep] === option
+                      ? "bg-primary text-white border-primary"
                       : "bg-background border-border text-muted-foreground group-hover:border-primary/50"}
                   `}>
                     {String.fromCharCode(65 + idx)}

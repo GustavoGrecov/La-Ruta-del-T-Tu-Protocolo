@@ -4,6 +4,7 @@ import { Button } from "@/components/Button";
 import { useQuizStore } from "@/lib/store";
 import { ArrowRight, Clock } from "lucide-react";
 import heroImg from "@assets/stock_images/woman_holding_a_warm_61ba8a80.jpg";
+import bgTexture from "@assets/landing_bg_texture.png";
 
 export default function Landing() {
   const [, setLocation] = useLocation();
@@ -16,9 +17,14 @@ export default function Landing() {
 
   return (
     <div className="min-h-screen bg-background relative overflow-hidden">
+      {/* Background Texture */}
+      <div className="absolute inset-0 opacity-40 z-0">
+        <img src={bgTexture} alt="" className="w-full h-full object-cover" />
+      </div>
+
       {/* Abstract background shapes */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent/40 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 z-0" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent/40 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3 z-0" />
 
       <main className="relative z-10 container mx-auto px-6 py-12 flex flex-col items-center justify-center min-h-screen text-center max-w-2xl">
         <motion.div
@@ -28,31 +34,31 @@ export default function Landing() {
           className="flex flex-col items-center"
         >
           <div className="w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-white shadow-xl shadow-primary/10">
-             <img src={heroImg} alt="Woman with tea" className="w-full h-full object-cover" />
+            <img src={heroImg} alt="Woman with tea" className="w-full h-full object-cover" />
           </div>
 
           <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium tracking-wide mb-8">
             Test de Diagnóstico Corporal
           </span>
-          
+
           <h1 className="text-4xl md:text-6xl text-foreground mb-6 leading-[1.15] text-balance">
             Ahora dime… ¿tu cuerpo también te está dando <span className="text-primary italic">estas señales</span>?
           </h1>
-          
+
           <p className="text-lg md:text-xl text-muted-foreground mb-10 leading-relaxed max-w-lg mx-auto text-balance">
             Este test identifica qué tés funcionan mejor para TU cuerpo y en qué momento del día necesitas tomarlos para ver resultados reales.
           </p>
-          
+
           <div className="flex flex-col items-center gap-4 w-full max-w-xs mx-auto">
-            <Button 
-              onClick={handleStart} 
-              size="lg" 
+            <Button
+              onClick={handleStart}
+              size="lg"
               className="w-full text-lg shadow-xl shadow-primary/20 hover:shadow-2xl hover:shadow-primary/30 transition-all duration-300"
             >
               Empezar el test
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
-            
+
             <div className="flex items-center text-sm text-muted-foreground/80">
               <Clock className="w-4 h-4 mr-1.5" />
               <span>Menos de 1 minuto</span>
@@ -61,7 +67,7 @@ export default function Landing() {
         </motion.div>
 
         {/* Trust markers */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 1 }}

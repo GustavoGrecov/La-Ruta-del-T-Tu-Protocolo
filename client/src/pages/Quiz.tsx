@@ -10,9 +10,9 @@ const QUESTIONS = [
     question: "¿Cuál es tu edad?",
     type: "age-cards",
     options: [
-      "18 até 40 anos",
-      "40 anos a 65",
-      "65 mais"
+      "18 a 40 años",
+      "40 a 65 años",
+      "Más de 65 años"
     ]
   },
   {

@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { useQuizStore } from "@/lib/store";
+import { ChevronLeft, BarChart, CheckCircle2, ArrowRight } from "lucide-react";
 import { Button } from "@/components/Button";
-import { ChevronLeft } from "lucide-react";
 import { useSubmitQuiz } from "@/hooks/use-quiz";
 
 const QUESTIONS = [
@@ -130,12 +130,121 @@ const QUESTIONS = [
   }
 ];
 
+// Interim Analysis Component
+function AnalysisView({ type, onContinue }: { type: 'first' | 'second', onContinue: () => void }) {
+  const isFirst = type === 'first';
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="flex-1 px-6 pb-10 flex flex-col items-center justify-center text-center space-y-8"
+    >
+      <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-2">
+        <BarChart className="w-8 h-8" />
+      </div>
+
+      <div>
+        <h2 className="text-2xl font-serif text-stone-900 mb-3">
+          {isFirst ? "Este es un análisis inicial de tu perfil" : "Tu cuerpo está listo para cambiar"}
+        </h2>
+        <p className="text-stone-500 text-sm max-w-xs mx-auto">
+          {isFirst
+            ? "Basado en tus primeras respuestas, hemos identificado patrones clave."
+            : "Ya tenemos casi todo lo necesario. Tu determinación es alta (95%)."}
+        </p>
+      </div>
+
+      {/* Stats Bars - Only shown in distinct ways or updated values */}
+      <div className="w-full max-w-xs space-y-6">
+        {/* Metric 1 */}
+        <div className="space-y-2">
+          <div className="flex justify-between text-xs font-semibold uppercase tracking-wider text-stone-600">
+            <span>Mentalidad y Motivación</span>
+            <span className="text-lime-600">95%</span>
+          </div>
+          <div className="h-3 w-full bg-stone-100 rounded-full overflow-hidden">
+            <motion.div
+              className="h-full bg-lime-500"
+              initial={{ width: 0 }}
+              animate={{ width: "95%" }}
+              transition={{ duration: 1, delay: 0.2 }}
+            />
+          </div>
+          <p className="text-[10px] text-left text-stone-400">Perfecta para iniciar el cambio.</p>
+        </div>
+
+        {/* Metric 2 */}
+        <div className="space-y-2">
+          <div className="flex justify-between text-xs font-semibold uppercase tracking-wider text-stone-600">
+            <span>Conocimiento Actual</span>
+            <span className="text-blue-600">{isFirst ? "40%" : "65%"}</span>
+          </div>
+          <div className="h-3 w-full bg-stone-100 rounded-full overflow-hidden">
+            <motion.div
+              className="h-full bg-blue-500"
+              initial={{ width: 0 }}
+              animate={{ width: isFirst ? "40%" : "65%" }}
+              transition={{ duration: 1, delay: 0.4 }}
+            />
+          </div>
+        </div>
+
+        {/* Metric 3 */}
+        <div className="space-y-2">
+          <div className="flex justify-between text-xs font-semibold uppercase tracking-wider text-stone-600">
+            <span>Bienestar General</span>
+            <span className="text-red-500">{isFirst ? "27%" : "27%"}</span>
+          </div>
+          <div className="h-3 w-full bg-stone-100 rounded-full overflow-hidden">
+            <motion.div
+              className="h-full bg-red-500"
+              initial={{ width: 0 }}
+              animate={{ width: "27%" }}
+              transition={{ duration: 1, delay: 0.6 }}
+            />
+          </div>
+          <p className="text-[10px] text-left text-red-400 font-medium">Atención necesaria.</p>
+        </div>
+      </div>
+
+      <div className="w-full max-w-xs pt-4">
+        {isFirst ? (
+          <div className="bg-amber-50 p-4 rounded-xl border border-amber-100 mb-6">
+            <h3 className="text-amber-800 font-serif font-bold text-sm mb-1">¿Preparamos un plan de acción?</h3>
+            <p className="text-amber-700/80 text-xs">
+              Un plan exclusivo y hecho para ti, de acuerdo con tus necesidades. Sé sincera en las próximas preguntas.
+            </p>
+          </div>
+        ) : (
+          <div className="bg-primary/5 p-4 rounded-xl border border-primary/10 mb-6">
+            <h3 className="text-primary font-serif font-bold text-sm mb-1">Último paso...</h3>
+            <p className="text-stone-600 text-xs">
+              Solo necesitamos afinar unos detalles finales para generar tu protocolo.
+            </p>
+          </div>
+        )}
+
+        <Button
+          onClick={onContinue}
+          className="w-full h-14 text-lg shadow-xl shadow-primary/20 animate-pulse-slow"
+        >
+          {isFirst ? "Continuar Análisis" : "Ver mi Resultado"}
+          <ArrowRight className="w-5 h-5 ml-2" />
+        </Button>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function Quiz() {
   const [, setLocation] = useLocation();
   const { currentStep, nextStep, prevStep, setAnswer, answers } = useQuizStore();
   const [direction, setDirection] = useState(0);
   const [isProcessing, setIsProcessing] = useState(false);
-  const submitQuiz = useSubmitQuiz();
+
+  // Track which interim screens have been shown to avoid loops
+  const [passedInterims, setPassedInterims] = useState<number[]>([]);
 
   // If we reload on a step that doesn't exist (out of bounds), reset
   useEffect(() => {
@@ -153,13 +262,6 @@ export default function Quiz() {
     } else {
       // Quiz completed
       setIsProcessing(true);
-
-      // Submit results silently (Fake for single file version)
-      // try {
-      //   await submitQuiz.mutateAsync({ ...answers, [currentStep]: option });
-      // } catch (e) {
-      //   console.error("Submission failed but proceeding", e);
-      // }
       console.log("Quiz completed locally");
 
       // Fake processing delay
@@ -177,6 +279,31 @@ export default function Quiz() {
       setLocation("/");
     }
   };
+
+  // CHECK INTERIM LOGIC (Synchronous Render Hijack)
+  // Step 5 (index 4 is done, currentStep is 5) -> Show Analysis 1
+  if (currentStep === 5 && !passedInterims.includes(5)) {
+    return (
+      <div className="min-h-screen bg-background flex flex-col max-w-lg mx-auto shadow-2xl shadow-stone-200/50 pt-10">
+        <AnalysisView
+          type="first"
+          onContinue={() => setPassedInterims(prev => [...prev, 5])}
+        />
+      </div>
+    );
+  }
+
+  // Step 10 (index 9 is done, currentStep is 10) -> Show Analysis 2
+  if (currentStep === 10 && !passedInterims.includes(10)) {
+    return (
+      <div className="min-h-screen bg-background flex flex-col max-w-lg mx-auto shadow-2xl shadow-stone-200/50 pt-10">
+        <AnalysisView
+          type="second"
+          onContinue={() => setPassedInterims(prev => [...prev, 10])}
+        />
+      </div>
+    );
+  }
 
   // Processing Screen
   if (isProcessing) {

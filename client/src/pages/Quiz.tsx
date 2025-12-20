@@ -8,6 +8,17 @@ import { useSubmitQuiz } from "@/hooks/use-quiz";
 
 const QUESTIONS = [
   {
+    id: 999,
+    question: "¿Cuál es tu edad?",
+    type: "image-grid",
+    options: [
+      "Menos de 25 años",
+      "Entre 25 y 35 años",
+      "Entre 36 y 50 años",
+      "Más de 50 años"
+    ]
+  },
+  {
     id: 1,
     question: "¿Qué es lo primero que haces al despertar?",
     options: [
@@ -281,25 +292,25 @@ export default function Quiz() {
   };
 
   // CHECK INTERIM LOGIC (Synchronous Render Hijack)
-  // Step 5 (index 4 is done, currentStep is 5) -> Show Analysis 1
-  if (currentStep === 5 && !passedInterims.includes(5)) {
+  // Step 5 check adjusted for new question (currentStep 6 now = after 6 questions)
+  if (currentStep === 6 && !passedInterims.includes(6)) {
     return (
       <div className="min-h-screen bg-background flex flex-col max-w-lg mx-auto shadow-2xl shadow-stone-200/50 pt-10">
         <AnalysisView
           type="first"
-          onContinue={() => setPassedInterims(prev => [...prev, 5])}
+          onContinue={() => setPassedInterims(prev => [...prev, 6])}
         />
       </div>
     );
   }
 
-  // Step 10 (index 9 is done, currentStep is 10) -> Show Analysis 2
-  if (currentStep === 10 && !passedInterims.includes(10)) {
+  // Step 10 check adjusted (currentStep 11 now)
+  if (currentStep === 11 && !passedInterims.includes(11)) {
     return (
       <div className="min-h-screen bg-background flex flex-col max-w-lg mx-auto shadow-2xl shadow-stone-200/50 pt-10">
         <AnalysisView
           type="second"
-          onContinue={() => setPassedInterims(prev => [...prev, 10])}
+          onContinue={() => setPassedInterims(prev => [...prev, 11])}
         />
       </div>
     );
@@ -392,34 +403,68 @@ export default function Quiz() {
               {currentQuestion.question}
             </h2>
 
-            <div className="space-y-3">
-              {currentQuestion.options.map((option, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => handleOptionSelect(option)}
-                  className={`
-                    w-full p-4 md:p-5 text-left rounded-2xl border-2 transition-all duration-200
-                    flex items-center group
-                    ${answers[currentStep] === option
-                      ? "border-primary bg-primary/5 text-primary-foreground"
-                      : "border-transparent bg-white shadow-sm hover:border-primary/30 hover:shadow-md text-stone-600"}
-                  `}
-                >
-                  <span className={`
-                    w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium mr-4 border
-                    transition-colors duration-200
-                    ${answers[currentStep] === option
-                      ? "bg-primary text-white border-primary"
-                      : "bg-background border-border text-muted-foreground group-hover:border-primary/50"}
-                  `}>
-                    {String.fromCharCode(65 + idx)}
-                  </span>
-                  <span className={`text-lg ${answers[currentStep] === option ? "text-primary font-medium" : ""}`}>
-                    {option}
-                  </span>
-                </button>
-              ))}
-            </div>
+            {currentQuestion.id === 999 ? (
+              // IMAGE GRID LAYOUT (Age Question)
+              <div className="grid grid-cols-2 gap-4">
+                {currentQuestion.options.map((option, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => handleOptionSelect(option)}
+                    className="relative group overflow-hidden rounded-2xl aspect-square shadow-md border-2 border-transparent hover:border-primary transition-all bg-white"
+                  >
+                    {/* Sprite Image Container - Adjusting for 2x2 grid */}
+                    <div className="absolute inset-x-0 top-0 bottom-10 bg-stone-200 overflow-hidden">
+                      <img
+                        src="/attached_assets/age_grid.png"
+                        alt={option}
+                        className="absolute w-[200%] h-[200%] max-w-none object-cover"
+                        style={{
+                          top: idx > 1 ? "-100%" : "0%",
+                          left: idx % 2 === 1 ? "-100%" : "0%"
+                        }}
+                      />
+                    </div>
+                    {/* Footer Label */}
+                    <div className="absolute bottom-0 left-0 right-0 h-10 bg-emerald-500 flex items-center justify-between px-3">
+                      <span className="text-[10px] md:text-xs font-bold text-white leading-tight">
+                        {option}
+                      </span>
+                      <ChevronLeft className="w-3 h-3 text-white rotate-180" />
+                    </div>
+                  </button>
+                ))}
+              </div>
+            ) : (
+              // STANDARD LAYOUT
+              <div className="space-y-3">
+                {currentQuestion.options.map((option, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => handleOptionSelect(option)}
+                    className={`
+                      w-full p-4 md:p-5 text-left rounded-2xl border-2 transition-all duration-200
+                      flex items-center group
+                      ${answers[currentStep] === option
+                        ? "border-primary bg-primary/5 text-primary-foreground"
+                        : "border-transparent bg-white shadow-sm hover:border-primary/30 hover:shadow-md text-stone-600"}
+                    `}
+                  >
+                    <span className={`
+                      w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium mr-4 border
+                      transition-colors duration-200
+                      ${answers[currentStep] === option
+                        ? "bg-primary text-white border-primary"
+                        : "bg-background border-border text-muted-foreground group-hover:border-primary/50"}
+                    `}>
+                      {String.fromCharCode(65 + idx)}
+                    </span>
+                    <span className={`text-lg ${answers[currentStep] === option ? "text-primary font-medium" : ""}`}>
+                      {option}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            )}
           </motion.div>
         </AnimatePresence>
       </div>

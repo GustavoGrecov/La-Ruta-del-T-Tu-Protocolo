@@ -11,6 +11,7 @@ import chamomileImg from "@assets/tea_chamomile_evening.png";
 import matchaImg from "@assets/tea_matcha_morning.jpg";
 import fennelImg from "@assets/tea_fennel_lunch.jpg";
 import lemonBalmImg from "@assets/tea_lemon_balm_evening.jpg";
+import bookCover from "@assets/book_cover.png";
 
 import { useQuizStore } from "@/lib/store";
 
@@ -98,7 +99,7 @@ export default function Results() {
   const [profile, setProfile] = useState(PROFILES[0]);
 
   useEffect(() => {
-    const q2Answer = answers[1]; 
+    const q2Answer = answers[1];
     if (q2Answer === "Abdomen hinchado") {
       setProfile(PROFILES.find(p => p.id === "detox") || PROFILES[1]);
     } else if (q2Answer === "Todo el cuerpo pesado") {
@@ -133,7 +134,7 @@ export default function Results() {
         {/* 🟢 BLOCK 1: EMOTIONAL CONFIRMATION (Hero) */}
         <header className="bg-primary/5 px-6 pt-12 pb-12 text-center relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/20 via-primary to-primary/20" />
-          
+
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -158,7 +159,7 @@ export default function Results() {
         <section className="px-6 py-10">
           <div className="text-center mb-8">
             <h2 className="text-xl font-serif text-stone-800 mb-2">
-              Estos son los 3 tés que tu cuerpo<br/>necesita para desinflamar
+              Estos son los 3 tés que tu cuerpo<br />necesita para desinflamar
             </h2>
             <p className="text-xs uppercase tracking-widest text-primary font-bold">
               Dentro de: La Ruta del Té – 21 DÍAS
@@ -187,7 +188,7 @@ export default function Results() {
 
             {/* Lunch */}
             <motion.div variants={item} className="flex gap-4 p-4 bg-stone-50 rounded-2xl border border-stone-100">
-               <div className="w-20 h-20 rounded-xl overflow-hidden shrink-0">
+              <div className="w-20 h-20 rounded-xl overflow-hidden shrink-0">
                 <img src={profile.teaLunch.img} alt="Lunch" className="w-full h-full object-cover" />
               </div>
               <div>
@@ -201,7 +202,7 @@ export default function Results() {
 
             {/* Evening */}
             <motion.div variants={item} className="flex gap-4 p-4 bg-stone-50 rounded-2xl border border-stone-100">
-               <div className="w-20 h-20 rounded-xl overflow-hidden shrink-0">
+              <div className="w-20 h-20 rounded-xl overflow-hidden shrink-0">
                 <img src={profile.teaEvening.img} alt="Evening" className="w-full h-full object-cover" />
               </div>
               <div>
@@ -217,12 +218,12 @@ export default function Results() {
 
         {/* 🔄 BLOCK 3: BRIDGE / OBJECTION */}
         <section className="px-8 py-8 bg-stone-900 text-stone-200 text-center relative overflow-hidden">
-           {/* Background noise/grain could go here */}
-           <div className="relative z-10">
-             <p className="text-lg font-serif italic leading-relaxed text-balance">
-               "Pero tomar los tés sin el ritual correcto es como tener el mapa sin saber el camino."
-             </p>
-           </div>
+          {/* Background noise/grain could go here */}
+          <div className="relative z-10">
+            <p className="text-lg font-serif italic leading-relaxed text-balance">
+              "Pero tomar los tés sin el ritual correcto es como tener el mapa sin saber el camino."
+            </p>
+          </div>
         </section>
 
         {/* 🧩 BLOCK 4: THE SYSTEM (Stages) */}
@@ -230,7 +231,7 @@ export default function Results() {
           <div className="text-center mb-10">
             <span className="text-xs font-bold text-stone-400 uppercase tracking-widest">El Método</span>
             <h2 className="text-2xl font-serif text-stone-900 mt-2">
-              Tu Camino Completo<br/>de Desinflamación
+              Tu Camino Completo<br />de Desinflamación
             </h2>
           </div>
 
@@ -254,7 +255,7 @@ export default function Results() {
 
             {/* Stage 2 */}
             <div className="relative flex gap-6">
-               <div className="w-14 h-14 rounded-full bg-indigo-50 border-4 border-white shadow-sm flex items-center justify-center shrink-0 z-10 text-indigo-600">
+              <div className="w-14 h-14 rounded-full bg-indigo-50 border-4 border-white shadow-sm flex items-center justify-center shrink-0 z-10 text-indigo-600">
                 <span className="font-bg text-xl font-serif">2</span>
               </div>
               <div className="pt-2">
@@ -268,7 +269,7 @@ export default function Results() {
 
             {/* Stage 3 */}
             <div className="relative flex gap-6">
-               <div className="w-14 h-14 rounded-full bg-amber-50 border-4 border-white shadow-sm flex items-center justify-center shrink-0 z-10 text-amber-600">
+              <div className="w-14 h-14 rounded-full bg-amber-50 border-4 border-white shadow-sm flex items-center justify-center shrink-0 z-10 text-amber-600">
                 <span className="font-bg text-xl font-serif">3</span>
               </div>
               <div className="pt-2">
@@ -282,7 +283,7 @@ export default function Results() {
 
             {/* Stage 4 */}
             <div className="relative flex gap-6">
-               <div className="w-14 h-14 rounded-full bg-primary/10 border-4 border-white shadow-sm flex items-center justify-center shrink-0 z-10 text-primary">
+              <div className="w-14 h-14 rounded-full bg-primary/10 border-4 border-white shadow-sm flex items-center justify-center shrink-0 z-10 text-primary">
                 <Star className="w-6 h-6 fill-current" />
               </div>
               <div className="pt-2">
@@ -298,7 +299,7 @@ export default function Results() {
 
         {/* 🛒 BLOCK 5: THE OFFER (Bundle) */}
         <section className="px-6 pb-12">
-          <motion.div 
+          <motion.div
             className="bg-stone-900 rounded-3xl p-8 text-white relative overflow-hidden shadow-2xl shadow-primary/20"
             initial={{ scale: 0.98, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
@@ -307,15 +308,23 @@ export default function Results() {
           >
             {/* Decor */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2" />
-            
+
             <div className="relative z-10 text-center">
               <span className="inline-block px-3 py-1 bg-white/10 rounded-full text-[10px] font-bold tracking-widest uppercase mb-4 text-primary-foreground/90">
                 Oferta Exclusiva
               </span>
-              <h2 className="text-2xl font-serif mb-2">Sistema Completo<br/>Camino del Té</h2>
-              <p className="text-stone-400 text-sm mb-8 font-light italic">
+
+              <h2 className="text-2xl font-serif mb-2">Sistema Completo<br />Camino del Té</h2>
+              <p className="text-stone-400 text-sm mb-6 font-light italic">
                 "No compres productos. Acepta un proceso."
               </p>
+
+              {/* BOOK COVER IMAGE */}
+              <div className="flex justify-center mb-8 relative z-10">
+                <div className="w-48 rounded-xl shadow-2xl shadow-black/50 overflow-hidden transform hover:scale-105 transition-transform duration-500">
+                  <img src={bookCover} alt="La Ruta del Té Book" className="w-full h-auto object-cover" />
+                </div>
+              </div>
 
               {/* Progress Anchors */}
               <div className="grid grid-cols-3 gap-2 mb-8 text-center">
@@ -343,11 +352,11 @@ export default function Results() {
                   <Check className="w-5 h-5 text-primary shrink-0" />
                   <span className="text-sm text-stone-200">Ritual Nocturno Anti-Inflamación</span>
                 </div>
-                 <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3">
                   <Check className="w-5 h-5 text-primary shrink-0" />
                   <span className="text-sm text-stone-200">Planner Imprimible 30 Días</span>
                 </div>
-                 <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3">
                   <Check className="w-5 h-5 text-primary shrink-0" />
                   <span className="text-sm font-bold text-white">La Ruta del Té – 21 DÍAS</span>
                 </div>
@@ -360,7 +369,7 @@ export default function Results() {
               >
                 Quiero Mi Camino Completo
               </Button>
-              
+
               <p className="text-xs text-stone-500">
                 Acceso inmediato a todo el sistema digital.
               </p>
@@ -375,11 +384,11 @@ export default function Results() {
               <Shield className="w-5 h-5 text-stone-400" />
               <span className="text-[10px] uppercase tracking-widest text-stone-500">100% Seguro</span>
             </div>
-             <div className="flex flex-col items-center gap-2">
+            <div className="flex flex-col items-center gap-2">
               <Clock className="w-5 h-5 text-stone-400" />
               <span className="text-[10px] uppercase tracking-widest text-stone-500">Acesso Imediato</span>
             </div>
-             <div className="flex flex-col items-center gap-2">
+            <div className="flex flex-col items-center gap-2">
               <Heart className="w-5 h-5 text-stone-400" />
               <span className="text-[10px] uppercase tracking-widest text-stone-500">Paso a paso</span>
             </div>

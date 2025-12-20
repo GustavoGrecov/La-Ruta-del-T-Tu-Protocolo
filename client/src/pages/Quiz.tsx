@@ -5,18 +5,19 @@ import { useQuizStore } from "@/lib/store";
 import { ChevronLeft, BarChart, CheckCircle2, ArrowRight } from "lucide-react";
 import { Button } from "@/components/Button";
 import { useSubmitQuiz } from "@/hooks/use-quiz";
-import ageGridImg from "@assets/age_grid.png";
+import age18Img from "@assets/age_18_40.png";
+import age40Img from "@assets/age_40_65.jpg";
+import age65Img from "@assets/age_65_plus.jpg";
 
 const QUESTIONS = [
   {
     id: 999,
     question: "¿Cuál es tu edad?",
-    type: "image-grid",
+    type: "age-cards",
     options: [
-      "Menos de 25 años",
-      "Entre 25 y 35 años",
-      "Entre 36 y 50 años",
-      "Más de 50 años"
+      "18 até 40 anos",
+      "40 anos a 65",
+      "65 mais"
     ]
   },
   {
@@ -405,35 +406,37 @@ export default function Quiz() {
             </h2>
 
             {currentQuestion.id === 999 ? (
-              // IMAGE GRID LAYOUT (Age Question)
-              <div className="grid grid-cols-2 gap-4">
-                {currentQuestion.options.map((option, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => handleOptionSelect(option)}
-                    className="relative group overflow-hidden rounded-2xl aspect-square shadow-md border-2 border-transparent hover:border-primary transition-all bg-white"
-                  >
-                    {/* Sprite Image Container - Adjusting for 2x2 grid */}
-                    <div className="absolute inset-x-0 top-0 bottom-10 bg-stone-200 overflow-hidden">
+              // 3-OPTION CARD LAYOUT (New Age Question)
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {currentQuestion.options.map((option, idx) => {
+                  let imgSource;
+                  if (idx === 0) imgSource = age18Img;
+                  else if (idx === 1) imgSource = age40Img;
+                  else imgSource = age65Img;
+
+                  return (
+                    <button
+                      key={idx}
+                      onClick={() => handleOptionSelect(option)}
+                      className="relative group overflow-hidden rounded-2xl shadow-md border-2 border-transparent hover:border-primary transition-all bg-white aspect-[3/4] md:aspect-auto"
+                    >
                       <img
-                        src={ageGridImg}
+                        src={imgSource}
                         alt={option}
-                        className="absolute w-[200%] h-[200%] max-w-none object-cover"
-                        style={{
-                          top: idx > 1 ? "-100%" : "0%",
-                          left: idx % 2 === 1 ? "-100%" : "0%"
-                        }}
+                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                    </div>
-                    {/* Footer Label */}
-                    <div className="absolute bottom-0 left-0 right-0 h-10 bg-emerald-500 flex items-center justify-between px-3">
-                      <span className="text-[10px] md:text-xs font-bold text-white leading-tight">
-                        {option}
-                      </span>
-                      <ChevronLeft className="w-3 h-3 text-white rotate-180" />
-                    </div>
-                  </button>
-                ))}
+                      {/* Gradient Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+                      {/* Footer Label */}
+                      <div className="absolute bottom-4 left-0 right-0 px-4 text-center">
+                        <span className="text-lg font-bold text-white shadow-sm">
+                          {option}
+                        </span>
+                      </div>
+                    </button>
+                  );
+                })}
               </div>
             ) : (
               // STANDARD LAYOUT

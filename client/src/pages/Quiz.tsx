@@ -5,6 +5,7 @@ import { useQuizStore } from "@/lib/store";
 import { ChevronLeft, BarChart, CheckCircle2, ArrowRight } from "lucide-react";
 import { Button } from "@/components/Button";
 import { useSubmitQuiz } from "@/hooks/use-quiz";
+import ageGridImg from "@assets/age_grid.png";
 
 const QUESTIONS = [
   {
@@ -415,7 +416,7 @@ export default function Quiz() {
                     {/* Sprite Image Container - Adjusting for 2x2 grid */}
                     <div className="absolute inset-x-0 top-0 bottom-10 bg-stone-200 overflow-hidden">
                       <img
-                        src="/attached_assets/age_grid.png"
+                        src={ageGridImg}
                         alt={option}
                         className="absolute w-[200%] h-[200%] max-w-none object-cover"
                         style={{

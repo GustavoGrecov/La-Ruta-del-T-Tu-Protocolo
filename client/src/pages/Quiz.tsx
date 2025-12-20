@@ -4,11 +4,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useQuizStore } from "@/lib/store";
 import { ChevronLeft, BarChart, CheckCircle2, ArrowRight } from "lucide-react";
 import { Button } from "@/components/Button";
-import { useSubmitQuiz } from "@/hooks/use-quiz";
-import age18Img from "@assets/age_18_40.png";
-import age40Img from "@assets/age_40_65.jpg";
-import age65Img from "@assets/age_65_plus.jpg";
-
 const QUESTIONS = [
   {
     id: 999,
@@ -405,70 +400,36 @@ export default function Quiz() {
               {currentQuestion.question}
             </h2>
 
-            {currentQuestion.id === 999 ? (
-              // 3-OPTION CARD LAYOUT (New Age Question)
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {currentQuestion.options.map((option, idx) => {
-                  let imgSource;
-                  if (idx === 0) imgSource = age18Img;
-                  else if (idx === 1) imgSource = age40Img;
-                  else imgSource = age65Img;
-
-                  return (
-                    <button
-                      key={idx}
-                      onClick={() => handleOptionSelect(option)}
-                      className="relative group overflow-hidden rounded-2xl shadow-md border-2 border-transparent hover:border-primary transition-all bg-white aspect-[3/4] md:aspect-auto"
-                    >
-                      <img
-                        src={imgSource}
-                        alt={option}
-                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                      {/* Gradient Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-
-                      {/* Footer Label */}
-                      <div className="absolute bottom-4 left-0 right-0 px-4 text-center">
-                        <span className="text-lg font-bold text-white shadow-sm">
-                          {option}
-                        </span>
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
-            ) : (
-              // STANDARD LAYOUT
-              <div className="space-y-3">
-                {currentQuestion.options.map((option, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => handleOptionSelect(option)}
-                    className={`
+            {/* Standard Layout for ALL questions including Age */}
+            <div className="space-y-3">
+              {currentQuestion.options.map((option, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => handleOptionSelect(option)}
+                  className={`
                       w-full p-4 md:p-5 text-left rounded-2xl border-2 transition-all duration-200
                       flex items-center group
                       ${answers[currentStep] === option
-                        ? "border-primary bg-primary/5 text-primary-foreground"
-                        : "border-transparent bg-white shadow-sm hover:border-primary/30 hover:shadow-md text-stone-600"}
+                      ? "border-primary bg-primary/5 text-primary-foreground"
+                      : "border-transparent bg-white shadow-sm hover:border-primary/30 hover:shadow-md text-stone-600"}
                     `}
-                  >
-                    <span className={`
+                >
+                  <span className={`
                       w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium mr-4 border
                       transition-colors duration-200
                       ${answers[currentStep] === option
-                        ? "bg-primary text-white border-primary"
-                        : "bg-background border-border text-muted-foreground group-hover:border-primary/50"}
+                      ? "bg-primary text-white border-primary"
+                      : "bg-background border-border text-muted-foreground group-hover:border-primary/50"}
                     `}>
-                      {String.fromCharCode(65 + idx)}
-                    </span>
-                    <span className={`text-lg ${answers[currentStep] === option ? "text-primary font-medium" : ""}`}>
-                      {option}
-                    </span>
-                  </button>
-                ))}
-              </div>
-            )}
+                    {String.fromCharCode(65 + idx)}
+                  </span>
+                  <span className={`text-lg ${answers[currentStep] === option ? "text-primary font-medium" : ""}`}>
+                    {option}
+                  </span>
+                </button>
+              ))}
+            </div>
+
           </motion.div>
         </AnimatePresence>
       </div>

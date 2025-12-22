@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/Button";
-import { Check, Shield, Clock, Heart, Star, AlertCircle } from "lucide-react";
+import { Check, Shield, Clock, Heart, Star, AlertCircle, Sun, Moon, Coffee } from "lucide-react";
 import { useQuizStore } from "@/lib/store";
 
 // Nuevos activos importados
@@ -87,6 +87,60 @@ export default function Results() {
           <p className="text-center text-[10px] text-stone-400 mt-2 italic">
             Resultados reales aplicando el protocolo correcto.
           </p>
+        </section>
+
+        {/* BLOCK 2.5: RUTINA GUIADA 3x AL DÍA (RESTAURADO) */}
+        {/* Reintegración de la rutina diaria para aumentar claridad y confianza */}
+        <section className="px-6 py-8 bg-stone-50 border-y border-stone-100 mb-8">
+          <div className="text-center mb-8">
+            <h2 className="text-xl font-serif text-stone-900 mb-2">
+              Tu rutina diaria simple y guiada<br />(3 veces al día)
+            </h2>
+            <p className="text-xs text-stone-500 max-w-xs mx-auto">
+              No necesitas contar calorías ni hacer dietas extremas. Solo seguir esta rutina clara y repetible.
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            {/* MAÑANA */}
+            <div className="bg-white p-4 rounded-xl shadow-sm border border-stone-100 flex gap-4">
+              <div className="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center shrink-0 text-amber-600">
+                <Sun className="w-6 h-6" />
+              </div>
+              <div>
+                <h3 className="text-sm font-bold text-stone-900 uppercase tracking-wide mb-1">Mañana – Activación</h3>
+                <p className="text-xs text-stone-600 leading-relaxed">
+                  Rutina con té específico para desinflamar, activar el metabolismo y preparar el cuerpo para el día.
+                </p>
+              </div>
+            </div>
+
+            {/* MEDIODÍA */}
+            <div className="bg-white p-4 rounded-xl shadow-sm border border-stone-100 flex gap-4">
+              <div className="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center shrink-0 text-emerald-600">
+                <Coffee className="w-6 h-6" />
+              </div>
+              <div>
+                <h3 className="text-sm font-bold text-stone-900 uppercase tracking-wide mb-1">Mediodía – Regulación</h3>
+                <p className="text-xs text-stone-600 leading-relaxed">
+                  Guía simple para evitar picos de inflamación y mantener el abdomen ligero durante el día.
+                </p>
+              </div>
+            </div>
+
+            {/* NOCHE */}
+            <div className="bg-white p-4 rounded-xl shadow-sm border border-stone-100 flex gap-4">
+              <div className="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center shrink-0 text-indigo-600">
+                <Moon className="w-6 h-6" />
+              </div>
+              <div>
+                <h3 className="text-sm font-bold text-stone-900 uppercase tracking-wide mb-1">Noche – Reparación</h3>
+                <p className="text-xs text-stone-600 leading-relaxed">
+                  Ritual nocturno antiinflamatorio para bajar el cortisol, mejorar el descanso y ayudar al cuerpo a desinflamar mientras duermes.
+                </p>
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* 3. ENCABEZADO PRINCIPAL DE VALOR */}

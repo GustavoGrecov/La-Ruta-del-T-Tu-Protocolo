@@ -4,16 +4,126 @@ import { Button } from "@/components/Button";
 import { Check, Shield, Clock, Heart, Star, AlertCircle, Sun, Moon, Coffee } from "lucide-react";
 import { useQuizStore } from "@/lib/store";
 
-// Nuevos activos importados
-import beforeImage from "@assets/transformacion_antes.png"; // Imagen "Antes"
-import productBundleImg from "@assets/pack_5_fases.jpg"; // Mockup del protocolo 5 fases
+// Activos de Tés (Restaurados)
+import gingerTeaImg from "@assets/tea_ginger_morning.png";
+import cinnamonTeaImg from "@assets/tea_cinnamon_lunch.png";
+import hibiscusTeaImg from "@assets/tea_hibiscus_evening.png";
+import greenTeaImg from "@assets/tea_green_lemon_morning.png";
+import peppermintImg from "@assets/tea_peppermint_lunch.png";
+import chamomileImg from "@assets/tea_chamomile_evening.png";
+import matchaImg from "@assets/tea_matcha_morning.jpg";
+import fennelImg from "@assets/tea_fennel_lunch.jpg";
+import lemonBalmImg from "@assets/tea_lemon_balm_evening.jpg";
+
+// Nuevos activos del layout
+import beforeImage from "@assets/transformacion_antes.png";
+import productBundleImg from "@assets/pack_5_fases_v2.jpg"; // Imagen actualizada
 
 // URL del video para la transformación "Después"
 const AFTER_VIDEO_URL = "https://iqptejsfgxyggswmeggh.supabase.co/storage/v1/object/public/flower/Technical_description_frametovideo_20251221%20(1).mp4";
 
+// PERFILES DE TÉ (Lógica Dinámica Restaurada)
+// Definimos los tés específicos para cada perfil de respuesta
+const PROFILES = [
+  {
+    id: "anti-inflammatory",
+    title: "Anti-Inflamatorio & Metabolismo",
+    teaMorning: {
+      name: "Té de Jengibre con clavo",
+      desc: "Activación suave para reducir la inflamación matinal.",
+      img: gingerTeaImg,
+      icon: Sun,
+      color: "amber"
+    },
+    teaLunch: {
+      name: "Té de Canela con carqueja",
+      desc: "Ayuda a la digestión y evita la hinchazón post-comida.",
+      img: cinnamonTeaImg,
+      icon: Coffee,
+      color: "primary"
+    },
+    teaEvening: {
+      name: "Té de Hibisco con menta",
+      desc: "Ligereza y bienestar para evitar el cansancio acumulado.",
+      img: hibiscusTeaImg,
+      icon: Moon,
+      color: "indigo"
+    }
+  },
+  {
+    id: "detox",
+    title: "Detox & Alivio de Hinchazón",
+    teaMorning: {
+      name: "Té Verde con Limón",
+      desc: "Potente antioxidante para eliminar toxinas desde temprano.",
+      img: greenTeaImg,
+      icon: Sun,
+      color: "green"
+    },
+    teaLunch: {
+      name: "Té de Menta",
+      desc: "Alivia espasmos y refresca, ideal para el post-almuerzo.",
+      img: peppermintImg,
+      icon: Coffee,
+      color: "emerald"
+    },
+    teaEvening: {
+      name: "Té de Manzanilla",
+      desc: "Relaja el sistema digestivo y mejora el sueño profundo.",
+      img: chamomileImg,
+      icon: Moon,
+      color: "yellow"
+    }
+  },
+  {
+    id: "energy",
+    title: "Energía & Control de Estrés",
+    teaMorning: {
+      name: "Matcha Latte",
+      desc: "Energía sostenida y enfoque mental claro.",
+      img: matchaImg,
+      icon: Sun,
+      color: "green"
+    },
+    teaLunch: {
+      name: "Té de Hinojo",
+      desc: "Combate gases y mantiene el vientre plano.",
+      img: fennelImg,
+      icon: Coffee,
+      color: "teal"
+    },
+    teaEvening: {
+      name: "Té de Melisa (Toronjil)",
+      desc: "Calmante natural para reducir la ansiedad del día.",
+      img: lemonBalmImg,
+      icon: Moon,
+      color: "purple"
+    }
+  }
+];
+
 export default function Results() {
-  // Solo la lógica básica si es necesaria, pero el diseño es estático/universal
   const { answers } = useQuizStore();
+  const [profile, setProfile] = useState(PROFILES[0]);
+
+  // Selección automática del perfil basado en las respuestas del quiz
+  useEffect(() => {
+    // La pregunta 2 (index 1) define el problema principal
+    const q2Answer = answers[1];
+    if (q2Answer === "Abdomen hinchado") {
+      setProfile(PROFILES.find(p => p.id === "detox") || PROFILES[1]);
+    } else if (q2Answer === "Todo el cuerpo pesado") {
+      setProfile(PROFILES.find(p => p.id === "energy") || PROFILES[2]);
+    } else {
+      setProfile(PROFILES.find(p => p.id === "anti-inflammatory") || PROFILES[0]);
+    }
+
+    // Fallback aleatorio si no hay respuesta clara
+    if (!q2Answer) {
+      const randomProfile = PROFILES[Math.floor(Math.random() * PROFILES.length)];
+      setProfile(randomProfile);
+    }
+  }, [answers]);
 
   const container = {
     hidden: { opacity: 0 },
@@ -89,54 +199,90 @@ export default function Results() {
           </p>
         </section>
 
-        {/* BLOCK 2.5: RUTINA GUIADA 3x AL DÍA (RESTAURADO) */}
-        {/* Reintegración de la rutina diaria para aumentar claridad y confianza */}
+        {/* BLOCK 2.5: RUTINA DINÁMICA DE TÉS (RESTAURADA) */}
+        {/* Rutina personalizada con foto del té específico + beneficio */}
         <section className="px-6 py-8 bg-stone-50 border-y border-stone-100 mb-8">
           <div className="text-center mb-8">
             <h2 className="text-xl font-serif text-stone-900 mb-2">
               Tu rutina diaria simple y guiada<br />(3 veces al día)
             </h2>
             <p className="text-xs text-stone-500 max-w-xs mx-auto">
-              No necesitas contar calorías ni hacer dietas extremas. Solo seguir esta rutina clara y repetible.
+              Hemos seleccionado estos tés específicamente para tu perfil <strong>{profile.title}</strong>.
             </p>
           </div>
 
           <div className="space-y-4">
-            {/* MAÑANA */}
-            <div className="bg-white p-4 rounded-xl shadow-sm border border-stone-100 flex gap-4">
-              <div className="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center shrink-0 text-amber-600">
-                <Sun className="w-6 h-6" />
+            {/* MAÑANA - DINÁMICO */}
+            <div className="bg-white p-4 rounded-xl shadow-sm border border-stone-100 flex gap-4 items-center">
+              <div className="relative shrink-0">
+                <img
+                  src={profile.teaMorning.img}
+                  alt={profile.teaMorning.name}
+                  className="w-16 h-16 rounded-full object-cover shadow-md border-2 border-amber-100"
+                />
+                <div className="absolute -bottom-1 -right-1 bg-amber-100 rounded-full p-1 text-amber-600">
+                  <Sun className="w-3 h-3" />
+                </div>
               </div>
-              <div>
-                <h3 className="text-sm font-bold text-stone-900 uppercase tracking-wide mb-1">Mañana – Activación</h3>
-                <p className="text-xs text-stone-600 leading-relaxed">
-                  Rutina con té específico para desinflamar, activar el metabolismo y preparar el cuerpo para el día.
+              <div className="flex-1">
+                <div className="text-[10px] font-bold text-amber-600 uppercase tracking-wider mb-0.5">
+                  Mañana – Activación
+                </div>
+                <h3 className="text-sm font-serif font-bold text-stone-900 leading-tight mb-1">
+                  {profile.teaMorning.name}
+                </h3>
+                <p className="text-[11px] text-stone-500 leading-relaxed">
+                  {profile.teaMorning.desc}
                 </p>
               </div>
             </div>
 
-            {/* MEDIODÍA */}
-            <div className="bg-white p-4 rounded-xl shadow-sm border border-stone-100 flex gap-4">
-              <div className="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center shrink-0 text-emerald-600">
-                <Coffee className="w-6 h-6" />
+            {/* MEDIODÍA - DINÁMICO */}
+            <div className="bg-white p-4 rounded-xl shadow-sm border border-stone-100 flex gap-4 items-center">
+              <div className="relative shrink-0">
+                <img
+                  src={profile.teaLunch.img}
+                  alt={profile.teaLunch.name}
+                  className="w-16 h-16 rounded-full object-cover shadow-md border-2 border-emerald-100"
+                />
+                <div className="absolute -bottom-1 -right-1 bg-emerald-100 rounded-full p-1 text-emerald-600">
+                  <Coffee className="w-3 h-3" />
+                </div>
               </div>
-              <div>
-                <h3 className="text-sm font-bold text-stone-900 uppercase tracking-wide mb-1">Mediodía – Regulación</h3>
-                <p className="text-xs text-stone-600 leading-relaxed">
-                  Guía simple para evitar picos de inflamación y mantener el abdomen ligero durante el día.
+              <div className="flex-1">
+                <div className="text-[10px] font-bold text-emerald-600 uppercase tracking-wider mb-0.5">
+                  Mediodía – Regulación
+                </div>
+                <h3 className="text-sm font-serif font-bold text-stone-900 leading-tight mb-1">
+                  {profile.teaLunch.name}
+                </h3>
+                <p className="text-[11px] text-stone-500 leading-relaxed">
+                  {profile.teaLunch.desc}
                 </p>
               </div>
             </div>
 
-            {/* NOCHE */}
-            <div className="bg-white p-4 rounded-xl shadow-sm border border-stone-100 flex gap-4">
-              <div className="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center shrink-0 text-indigo-600">
-                <Moon className="w-6 h-6" />
+            {/* NOCHE - DINÁMICO */}
+            <div className="bg-white p-4 rounded-xl shadow-sm border border-stone-100 flex gap-4 items-center">
+              <div className="relative shrink-0">
+                <img
+                  src={profile.teaEvening.img}
+                  alt={profile.teaEvening.name}
+                  className="w-16 h-16 rounded-full object-cover shadow-md border-2 border-indigo-100"
+                />
+                <div className="absolute -bottom-1 -right-1 bg-indigo-100 rounded-full p-1 text-indigo-600">
+                  <Moon className="w-3 h-3" />
+                </div>
               </div>
-              <div>
-                <h3 className="text-sm font-bold text-stone-900 uppercase tracking-wide mb-1">Noche – Reparación</h3>
-                <p className="text-xs text-stone-600 leading-relaxed">
-                  Ritual nocturno antiinflamatorio para bajar el cortisol, mejorar el descanso y ayudar al cuerpo a desinflamar mientras duermes.
+              <div className="flex-1">
+                <div className="text-[10px] font-bold text-indigo-600 uppercase tracking-wider mb-0.5">
+                  Noche – Reparación
+                </div>
+                <h3 className="text-sm font-serif font-bold text-stone-900 leading-tight mb-1">
+                  {profile.teaEvening.name}
+                </h3>
+                <p className="text-[11px] text-stone-500 leading-relaxed">
+                  {profile.teaEvening.desc}
                 </p>
               </div>
             </div>
@@ -239,4 +385,3 @@ export default function Results() {
     </div>
   );
 }
-

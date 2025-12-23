@@ -153,7 +153,7 @@ export default function Results() {
         <section className="px-6 py-8 bg-stone-50 border-y border-stone-100 mb-8">
           <div className="text-center mb-8">
             <h2 className="text-xl font-serif text-stone-900 mb-2">
-              Tu rutina diaria simple y guiada<br />(3 veces al día)
+              Tu rutina diaria simple y guiada<br />(solo 3 momentos al día)
             </h2>
             <p className="text-xs text-stone-500 max-w-xs mx-auto leading-relaxed">
               No necesitas fuerza de voluntad ni dietas extremas.<br />Solo seguir esta rutina sencilla, adaptada a tu día.
@@ -353,8 +353,8 @@ export default function Results() {
             "Todo lo que necesitas, paso a paso, para que tu cuerpo vuelva a funcionar correctamente."
           </p>
 
-          <div className="bg-emerald-50/50 rounded-lg p-3 mb-4 inline-block border border-emerald-100">
-            <p className="text-xs font-bold text-emerald-800 uppercase tracking-wide flex items-center gap-2">
+          <div className="bg-emerald-50/50 rounded-lg p-2 px-4 mb-2 inline-block border border-emerald-100">
+            <p className="text-[11px] font-bold text-emerald-800 uppercase tracking-wide flex items-center gap-2">
               <Shield className="w-3 h-3" /> Acceso inmediato. Riesgo cero. Garantía total.
             </p>
           </div>
